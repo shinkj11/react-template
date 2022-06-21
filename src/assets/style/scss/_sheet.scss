@@ -1,0 +1,231 @@
+.BottomSheet {
+  display: none;
+}
+
+.BottomSheet--show {
+  display: block;
+}
+
+.BottomSheet__dim {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+
+  .BottomSheet--show & {
+    animation: fadeInDim 0.12s ease-in 0.05s forwards;
+
+    @keyframes fadeInDim {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.FilterBottomSheet__tab {
+  display: flex;
+  height: 40px;
+  border: 2px solid rgb(255, 235, 0);
+  border-radius: 4px;
+
+  button {
+    width: 50%;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.4);
+
+    &.active {
+      background: rgb(255, 235, 0);
+      color: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+
+.FilterBottomSheet__footer {
+  button {
+    width: 100%;
+    height: 55px;
+    border: 1px solid rgb(255, 219, 0);
+    border-radius: 4px;
+    background: rgb(255, 235, 0);
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+
+.BottomSheet__contents {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 24px;
+  transform: translateY(100%);
+  transition: 0.24s ease-out;
+
+  .BottomSheet--show & {
+    animation: slideUp 0.32s ease-out 0.25s forwards;
+
+    @keyframes slideUp {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+.filter-picker {
+  position: relative;
+  display: flex;
+  height: 272px;
+
+  .filter-active {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-top: 120px;
+    pointer-events: none;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      z-index: 1;
+    }
+
+    &::before {
+      top: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+    }
+
+    &::after {
+      bottom: 0;
+      background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 1),
+        rgba(255, 255, 255, 0)
+      );
+    }
+
+    span {
+      display: inline-block;
+      width: calc(50% - 6px);
+      height: 32px;
+      border-radius: 8px;
+      background: #e9ecef;
+      top: 120px;
+      left: 0;
+      z-index: -1;
+
+      & + span {
+        margin-left: 12px;
+      }
+    }
+  }
+
+  > ul {
+    position: relative;
+    width: calc(50% - 6px);
+    height: 272px;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scroll-snap-stop: always;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &:first-of-type {
+      margin-right: 12px;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    li {
+      height: 32px;
+      margin-bottom: 8px;
+      padding: 4px 0;
+      text-align: center;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #adb5bd;
+      position: relative;
+      z-index: 1;
+
+      &:last-of-type {
+        padding: 4px 0 144px;
+        margin-bottom: 4px;
+      }
+
+      &:first-of-type {
+        padding: 124px 0 24px;
+        margin-bottom: 8px;
+      }
+
+      &.active {
+        color: #0e1012;
+      }
+    }
+  }
+
+  &.add-row {
+    > ul,
+    .filter-active span {
+      width: calc(33.3% - 6px);
+      margin: 0;
+
+      &:nth-of-type(2) {
+        margin: 0 8px;
+      }
+    }
+  }
+}
+
+.BankList {
+  padding-top: 10px;
+  li {
+    display: inline-flex;
+    justify-content: center;
+    width: 25%;
+    margin-bottom: 20px;
+    text-align: center;
+
+    button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+
+      i {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 10px;
+        background: rgb(255, 235, 0);
+        border-radius: 4px;
+      }
+    }
+  }
+}

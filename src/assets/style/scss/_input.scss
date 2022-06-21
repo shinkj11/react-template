@@ -1,0 +1,73 @@
+.Input {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  height: 48px;
+  transition: border 0.2s ease-out;
+
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  &--add-bottom-border {
+    border-bottom: 1px solid rgb(255, 235, 0);
+  }
+
+  &--error-bottom-border {
+    border-bottom: 1px solid rgb(255, 0, 0);
+  }
+
+  &--large {
+    margin-top: 7px;
+    border-bottom-width: 2px;
+  }
+}
+
+.Input__element {
+  overflow: hidden;
+  flex: 1;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  caret-color: rgb(255, 235, 0);
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  .Input--large & {
+    font-size: 24px;
+    font-weight: 400;
+  }
+}
+
+.Input__error-message {
+  padding-right: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e50e0e;
+}
+
+.Input__error-underline-message {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+
+  svg {
+    margin-right: 8px;
+  }
+}
+
+.Input__button-delete {
+  width: 32px;
+  height: 32px;
+  text-align: right;
+
+  svg {
+    vertical-align: top;
+  }
+}
