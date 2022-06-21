@@ -1,7 +1,7 @@
 /**
  * 은행
  */
-interface Bank {
+export interface Bank {
   /** 아이디 */
   id: number;
   /** 은행명 */
@@ -11,14 +11,14 @@ interface Bank {
 /**
  * 예약송금 타입
  */
-type ReservationType =
+export type ReservationType =
   | "MONTHLY" // 매월 예약
   | "ONCE"; // 1회 예약
 
 /**
  * 예약송금
  */
-interface Reservation {
+export interface Reservation {
   /** 아이디, autoincrement id로 자동생성 */
   id: number;
   /** 타이틀 */
@@ -45,7 +45,7 @@ interface Reservation {
  * me 정보
  */
 
-interface Me {
+export interface Me {
   /** 현재까지 송금한 금액 */
   remittanceAmount: number;
 }
