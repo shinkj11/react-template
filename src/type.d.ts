@@ -20,7 +20,7 @@ export type ReservationType =
  */
 export interface Reservation {
   /** 아이디, autoincrement id로 자동생성 */
-  id: number;
+  id?: number;
   /** 타이틀 */
   title: string;
   /** 은행 아이디 */
