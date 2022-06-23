@@ -15,14 +15,24 @@ class bankAxiosService extends AxiosApiWrapper {
     return this.get<Reservation[]>();
   }
 
-  getReservationDetail(id: string): Promise<Reservation> {
+  getReservationDetail(id: number): Promise<Reservation> {
     this.endPoint = `reservation/${id}`;
     return this.get<Reservation>();
+  }
+
+  modifyReservationDetail({ id, ...rest }: Reservation): Promise<Reservation> {
+    this.endPoint = `reservations/${id}`;
+    return this.put<Reservation>({ ...rest });
   }
 
   addReservationDetail(reservation: Reservation): Promise<Reservation> {
     this.endPoint = `reservations`;
     return this.post<Reservation>(reservation);
+  }
+
+  modifyMe(me: Me): Promise<Me> {
+    this.endPoint = `me`;
+    return this.put<Me>({ ...me });
   }
 
   getMe(): Promise<Me> {
