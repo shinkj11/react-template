@@ -1,32 +1,23 @@
 import { Meta } from "@storybook/react";
 import { useState } from "react";
 import Icon, { close, noticeError } from "src/assets/svg";
+import Input, { InputProps } from "src/components/Input";
 
 export default {
   title: "예약송금/컴포넌트/Input",
 } as Meta;
 
-export const RegularInput = () => {
-  const [displayedValue, setDisplayedValue] = useState("홍길동");
+export const RegularInput = (props: InputProps) => {
   return (
-    <>
-      <main className="RemittanceMain">
-        <article className="RemittanceDetail">
-          <div className={"Input"}>
-            <input className="Input__element" defaultValue={displayedValue} />
-            <div>
-              <button type="button" className="Input__button-delete">
-                <Icon icon={close} size={18} />
-              </button>
-            </div>
-          </div>
-        </article>
-      </main>
-    </>
+    <main className="RemittanceMain">
+      <article className="RemittanceDetail">
+        <Input readOnly defaultValue="홍길동" />
+      </article>
+    </main>
   );
 };
 
-export const RegularInputFocus = () => {
+export const RegularInputFocus__markup = () => {
   const [displayedValue, setDisplayedValue] = useState("홍길동");
   return (
     <>
