@@ -29,6 +29,11 @@ const RemittanceCard = ({
     else return dateAt;
   };
 
+  const getDateDiffString = () => {
+    const dateDiffNum = getDateDiff(dateAt, type);
+    return dateDiffNum > 0 ? `D-${dateDiffNum}` : "오늘";
+  };
+
   return (
     <div className="RemittanceCard">
       <button type="button" className="RemittanceCard__content">
@@ -37,7 +42,7 @@ const RemittanceCard = ({
             <p>{title}</p>
             <span>{`${bankName} ${accountNumber}`}</span>
           </div>
-          <div>{`D-${getDateDiff(dateAt, type)}`}</div>
+          <div>{getDateDiffString()}</div>
         </div>
         <div className="RemittanceCard__bottom">
           <span>{getDateString()}</span>

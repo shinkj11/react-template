@@ -20,5 +20,7 @@ export const getDateDiff = (
   return date.diff(today, "day");
 };
 
-export const getNumberWithCommas = (amount: number): string =>
-  amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+export const getNumberWithCommas = (amount: number | string): string => {
+  const amountNum = typeof amount === "string" ? Number(amount) : amount;
+  return amountNum.toLocaleString();
+};
