@@ -150,7 +150,7 @@ export const 예약일자_component = () => {
         console.log("reservationDate", reservationDate);
       }}
       reservationType="ONCE"
-      onceDateAt="2022.07.13"
+      dateAt="2022.07.13"
       show
     />
   );

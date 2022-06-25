@@ -81,15 +81,15 @@ export const 상세_기본__component = () => {
       <Nav title="예약송금 상세" leftButton="back" rightButton="delete" />
       <main className="RemittanceMain">
         <article className="RemittanceDetail">
-          <Input defaultValue="부모님 용돈" showRemoveButton={false} readOnly />
+          <Input value="부모님 용돈" showRemoveButton={false} readOnly />
           <Input
-            defaultValue="KB국민 111122223333"
+            value="KB국민 111122223333"
             showRemoveButton={false}
             readOnly
           />
 
           {/* 1회 예약 선택 시 */}
-          <Input defaultValue="22.08.16" showRemoveButton={false} readOnly />
+          <Input value="22.08.16" showRemoveButton={false} readOnly />
 
           {/* 반복예약 선택 시 */}
           {/* <ButtonedField
@@ -106,7 +106,7 @@ export const 상세_기본__component = () => {
 
           <Input
             variant="large"
-            defaultValue={getNumberWithCommas("1000000")}
+            value={getNumberWithCommas("1000000")}
             showRemoveButton={false}
             readOnly
           />

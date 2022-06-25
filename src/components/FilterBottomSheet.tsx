@@ -8,8 +8,7 @@ export interface FilterBottomSheetProps {
   onDateSelect: (reservationDate: ReservationDateType) => void;
   show?: boolean;
   reservationType?: ReservationType;
-  monthlyDateAt?: string;
-  onceDateAt?: string;
+  dateAt?: string;
 }
 
 interface IndexListType {
@@ -25,8 +24,7 @@ const FilterBottomSheet = ({
   onDateSelect,
   show = false,
   reservationType = "MONTHLY",
-  monthlyDateAt,
-  onceDateAt,
+  dateAt,
 }: FilterBottomSheetProps) => {
   const datePickerRef = useRef<ListHandle>(null);
 
@@ -123,7 +121,7 @@ const FilterBottomSheet = ({
               ref={datePickerRef}
               onScrollLeftFilter={onScrollLeftFilter}
               onScrollRightFilter={onScrollRightFilter}
-              defalutValue={monthlyDateAt}
+              defalutValue={dateAt}
             />
           )}
           {activeTabIndex === 1 && (
@@ -132,7 +130,7 @@ const FilterBottomSheet = ({
               onScrollLeftFilter={onScrollLeftFilter}
               onScrollRightFilter={onScrollRightFilter}
               onScrollCenterFilter={onScrollCenterFilter}
-              defalutValue={onceDateAt}
+              defalutValue={dateAt}
               selectedYearIndex={indexList.left}
               selectedMonthIndex={indexList.center}
             />

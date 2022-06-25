@@ -8,15 +8,14 @@ import {
   useState,
 } from "react";
 import Icon, { close } from "src/assets/svg";
+import { InputHandle } from "src/type";
 
 type InputVariantType = "regular" | "large";
-type InputHandle = {
-  getValue: () => string;
-};
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   placeHolder?: string;
+  value?: string;
   defaultValue?: string;
   variant?: InputVariantType;
   error?: boolean;
@@ -32,6 +31,7 @@ const Input = forwardRef<InputHandle, InputProps>(
     {
       type = "text",
       placeHolder = "",
+      value,
       defaultValue = "",
       variant = "regular",
       error = false,
@@ -46,7 +46,9 @@ const Input = forwardRef<InputHandle, InputProps>(
     ref
   ) => {
     const [isFocus, setIsFocus] = useState<boolean>(false);
-    const [isEmpty, setIsEmpty] = useState<boolean>(!defaultValue);
+    const [isEmpty, setIsEmpty] = useState<boolean>(
+      ref ? !defaultValue : !value
+    );
     const inputRef = useRef<HTMLInputElement>(null);
     useImperativeHandle(ref, () => ({
       getValue: () => {
@@ -73,8 +75,10 @@ const Input = forwardRef<InputHandle, InputProps>(
     };
 
     useEffect(() => {
-      console.log(defaultValue);
-    }, []);
+      if (value) {
+        setIsEmpty(false);
+      }
+    }, [value]);
 
     return (
       <>
@@ -88,10 +92,11 @@ const Input = forwardRef<InputHandle, InputProps>(
             className="Input__element"
             type={type}
             placeholder={placeHolder}
-            defaultValue={ref ? undefined : defaultValue}
+            value={ref ? undefined : value}
+            defaultValue={ref ? defaultValue : undefined}
             onFocus={() => !readOnly && setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
-            ref={ref && inputRef}
+            ref={inputRef}
             readOnly={readOnly}
             onChange={onInputChange}
             {...rest}

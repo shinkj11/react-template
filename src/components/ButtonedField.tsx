@@ -12,13 +12,15 @@ const ButtonedField = ({
   onButtonClick,
 }: ButtonedFieldProps) => {
   return (
-    <p className="RemittanceDetail--paragraph-space-between">
+    <p
+      className="RemittanceDetail--paragraph-space-between"
+      onClick={onButtonClick}
+    >
       <span>{value}</span>
       {buttonActive ? (
         <button
           type="button"
           className="RemittanceDetail__button RemittanceDetail__button--empty"
-          onClick={onButtonClick}
         >
           {buttonText}
         </button>
