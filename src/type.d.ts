@@ -49,3 +49,8 @@ export interface Me {
   /** 현재까지 송금한 금액 */
   remittanceAmount: number;
 }
+
+export interface ReservationDateType {
+  type: ReservationType;
+  dateAt: string;
+}
