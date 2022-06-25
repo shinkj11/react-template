@@ -2,6 +2,7 @@ import {
   ChangeEvent,
   forwardRef,
   InputHTMLAttributes,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -22,6 +23,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   readonly?: boolean;
   errorMessage?: string;
   onClick?: () => void;
+  showRemoveButton?: boolean;
   onCloseClick?: () => void;
 }
 
@@ -35,6 +37,7 @@ const Input = forwardRef<InputHandle, InputProps>(
       error = false,
       readOnly = false,
       errorMessage = "",
+      showRemoveButton = true,
       onClick,
       onChange,
       onCloseClick,
@@ -69,6 +72,10 @@ const Input = forwardRef<InputHandle, InputProps>(
       setIsEmpty(true);
     };
 
+    useEffect(() => {
+      console.log(defaultValue);
+    }, []);
+
     return (
       <>
         <div
@@ -81,7 +88,7 @@ const Input = forwardRef<InputHandle, InputProps>(
             className="Input__element"
             type={type}
             placeholder={placeHolder}
-            defaultValue={ref ? defaultValue : undefined}
+            defaultValue={ref ? undefined : defaultValue}
             onFocus={() => !readOnly && setIsFocus(true)}
             onBlur={() => setIsFocus(false)}
             ref={ref && inputRef}
@@ -92,7 +99,7 @@ const Input = forwardRef<InputHandle, InputProps>(
           {error && (
             <span className="Input__error-message">{errorMessage}</span>
           )}
-          {!isEmpty && (
+          {!isEmpty && showRemoveButton && (
             <div>
               <button
                 onClick={handleCloseClick}
