@@ -1,5 +1,7 @@
 import { useState, useCallback, useRef } from "react";
 import { Meta } from "@storybook/react";
+import FilterBottomSheet from "src/components/FilterBottomSheet";
+import { ReservationDateType } from "src/type";
 
 export default {
   title: "예약송금/컴포넌트/BottomSheet",
@@ -138,5 +140,18 @@ export const 예약일자 = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+export const 예약일자_component = () => {
+  return (
+    <FilterBottomSheet
+      onDateSelect={(reservationDate: ReservationDateType) => {
+        console.log("reservationDate", reservationDate);
+      }}
+      reservationType="ONCE"
+      onceDateAt="2022.07.13"
+      show
+    />
   );
 };
