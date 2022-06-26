@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# 카카오페이 사전과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 폴더구조
 
-## Available Scripts
+```
+/src
+    /assets  # 제공된 style 및 image
+    /components  # 마크업에서 추출한 컴포넌트
+    /markup  # 제공된 HTML 마크업 및 스토리북
+    /pages  # 화면 렌더링 컴포넌트
+    /recoil  # 리코일 store
+    /services  # API 호출 모듈(axios 라이브러리 사용)
+    /test  # 테스트코드
+    /util  # 유틸 함수
+```
 
-In the project directory, you can run:
+### 추가 라이브러리
 
-### `npm start`
+#### `recoil`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+상태관리 및 Suspense를 활용한 API 로직처리를 위해 사용했습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+#### `axios`
 
-### `npm test`
+API 호출 라이브러리이며, wrapper 및 intercepter 패턴을 통해
+코드 신뢰성을 향상시키고 Typescript 친화적으로 사용하고자 했습니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### `dayjs`
 
-### `npm run build`
+Date 처리 라이브러리 입니다. 송금일자 선택 및 화면에 보여줄 날짜 형식을 위해 추가했습니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### `msw`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Service mocking 라이브러리입니다. 테스트를 위해 추가했습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 프로젝트 설계방향
 
-### `npm run eject`
+#####1. 컴포넌트 기반 개발
+주어진 요구사항과 마크업을 분석하여, 재사용이 용이한 컴포넌트를 먼저 개발하고
+이후에 만들어진 컴포넌트들로 화면을 구성하고자 하였습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#####2. Suspense
+데이터가 fetch되기 전, 화면이 렌더링 되는것을 방지하기 위해
+React.Suspense와 recoil을 활용하여 fetch 이후 화면이 렌더링되도록 했습니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#####3. Service 패턴
+API 호출 로직을 Service 레이어로 분리하고,
+Typescript Generic을 사용하여 데이터의 타입정합성을 지키고자 하였고
+Axios 라이브러리의 wrapper 및 interceptor 패턴을 통해 효율적인 API 처리를 하고자했습니다.
