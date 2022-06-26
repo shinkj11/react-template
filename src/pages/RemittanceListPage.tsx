@@ -28,7 +28,7 @@ const RemittanceListPage = () => {
     return result;
   };
 
-  const onActiveChange = (id: number, isActive: boolean) => {
+  const onActiveChange = useCallback((id: number, isActive: boolean) => {
     const changedIndex = reservationList.findIndex((item) => item.id === id);
     callModifyReservationDetail({
       ...reservationList[changedIndex]!,
@@ -41,7 +41,7 @@ const RemittanceListPage = () => {
         })
       );
     });
-  };
+  }, []);
 
   const onItemClick = (reservationId: number) => {
     setSelectedId(reservationId);

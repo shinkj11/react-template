@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import ButtonedField from "src/components/ButtonedField";
 import Input from "src/components/Input";
@@ -68,7 +69,11 @@ const RemittanceDetailPage = () => {
           />
           <ButtonedField
             value={type === "MONTHLY" ? `매월 ${dateAt}일` : dateAt}
-            buttonText={type === "MONTHLY" ? `${startAt} 부터` : ""}
+            buttonText={
+              type === "MONTHLY"
+                ? `${dayjs(startAt).format("YYYY.MM.DD")} 부터`
+                : ""
+            }
             buttonActive={false}
           />
           {type === "MONTHLY" && (
