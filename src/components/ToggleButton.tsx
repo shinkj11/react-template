@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, MouseEvent } from "react";
 
 export interface ToggleButtonProps {
   isActive?: boolean;
@@ -8,11 +8,13 @@ export interface ToggleButtonProps {
 const ToggleButton = ({ isActive = false, onChange }: ToggleButtonProps) => {
   const [isToggleActive, setIsToggleActive] = useState<boolean>(isActive);
 
-  const onToggleClick = () =>
+  const onToggleClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setIsToggleActive((org) => {
       onChange && onChange(!org);
       return !org;
     });
+  };
 
   return (
     <button

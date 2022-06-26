@@ -9,15 +9,6 @@ import AxiosRequest from "../../api-handlers/axios/request-handler/request.handl
 import AxiosResponseError from "../../api-handlers/axios/response-handler/response-error.handler";
 import AxiosResponse from "../../api-handlers/axios/response-handler/response.handler";
 
-export type CustomResponseFormat<T = any> = {
-  data: T;
-  message?: string;
-  status: number;
-  statusCode: string;
-  successOrNot: string;
-  refreshedToken?: string;
-};
-
 export interface CustomInstance extends AxiosInstance {
   interceptors: {
     request: AxiosInterceptorManager<AxiosRequestConfig>;

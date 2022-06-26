@@ -3,9 +3,9 @@ import { AxiosApiWrapper } from "../abstract/axios-api-wrapper.abstract";
 
 class bankAxiosService extends AxiosApiWrapper {
   endPoint!: string;
-  getBank(): Promise<Bank> {
+  getBank(): Promise<Bank[]> {
     this.endPoint = `bank`;
-    return this.get<Bank>();
+    return this.get<Bank[]>();
   }
 
   getReservations(): Promise<Reservation[]> {
@@ -16,8 +16,13 @@ class bankAxiosService extends AxiosApiWrapper {
   }
 
   getReservationDetail(id: number): Promise<Reservation> {
-    this.endPoint = `reservation/${id}`;
+    this.endPoint = `reservations/${id}`;
     return this.get<Reservation>();
+  }
+
+  removeReservationDetail(id: number): Promise<void> {
+    this.endPoint = `reservations/${id}`;
+    return this.delete<void>();
   }
 
   modifyReservationDetail({ id, ...rest }: Reservation): Promise<Reservation> {

@@ -8,11 +8,7 @@ export const getDateDiff = (
   const today = dayjs().startOf("day");
   let date: Dayjs;
   if (dateType === "MONTHLY") {
-    const parsedDate = parseInt(dateAt);
-    date =
-      parsedDate < today.date()
-        ? dayjs().add(1, "month").set("date", parseInt(dateAt))
-        : dayjs().set("date", parseInt(dateAt));
+    date = getMonthlyDate(dateAt);
   } else {
     date = dayjs(dateAt).startOf("day");
   }
@@ -20,7 +16,13 @@ export const getDateDiff = (
   return date.diff(today, "day");
 };
 
+export const getMonthlyDate = (dateAt: string): Dayjs => {
+  return parseInt(dateAt) < dayjs().startOf("day").date()
+    ? dayjs().add(1, "month").set("date", parseInt(dateAt))
+    : dayjs().set("date", parseInt(dateAt));
+};
+
 export const getNumberWithCommas = (amount: number | string): string => {
   const amountNum = typeof amount === "string" ? Number(amount) : amount;
-  return amountNum.toLocaleString();
+  return amountNum ? amountNum.toLocaleString() : "";
 };

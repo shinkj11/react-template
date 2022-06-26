@@ -132,6 +132,7 @@ export const 목록_보유__markup = () => (
 
 const remittanceCardPropList: RemittanceCardProps[] = [
   {
+    id: 1,
     title: "부모님 용돈",
     bankName: "KB국민",
     accountNumber: "123412341234",
@@ -141,6 +142,7 @@ const remittanceCardPropList: RemittanceCardProps[] = [
     isActive: false,
   },
   {
+    id: 2,
     title: "부모님 용돈",
     bankName: "KB국민",
     accountNumber: "123412341234",
@@ -150,6 +152,7 @@ const remittanceCardPropList: RemittanceCardProps[] = [
     isActive: true,
   },
   {
+    id: 3,
     title: "부모님 용돈",
     bankName: "KB국민",
     accountNumber: "123412341234",
@@ -159,6 +162,7 @@ const remittanceCardPropList: RemittanceCardProps[] = [
     isActive: true,
   },
   {
+    id: 4,
     title: "부모님 용돈",
     bankName: "KB국민",
     accountNumber: "123412341234",

@@ -1,9 +1,11 @@
+import dayjs from "dayjs";
 import { useState } from "react";
 import { ReservationType } from "src/type";
 import { getDateDiff, getNumberWithCommas } from "src/util/Util";
 import ToggleButton from "./ToggleButton";
 
 export interface RemittanceCardProps {
+  id: number;
   title: string;
   bankName: string;
   accountNumber: string;
@@ -11,10 +13,12 @@ export interface RemittanceCardProps {
   dateAt: string;
   amount: number;
   isActive: boolean;
-  onActiveChange?: (isActive: boolean) => void;
+  onActiveChange?: (id: number, isActive: boolean) => void;
+  onClick?: () => void;
 }
 
 const RemittanceCard = ({
+  id,
   title,
   bankName,
   accountNumber,
@@ -23,10 +27,11 @@ const RemittanceCard = ({
   amount,
   isActive,
   onActiveChange,
+  onClick,
 }: RemittanceCardProps) => {
   const getDateString = () => {
     if (type === "MONTHLY") return `매월 ${parseInt(dateAt)}일`;
-    else return dateAt;
+    else return dayjs(dateAt).format("YYYY.MM.DD");
   };
 
   const getDateDiffString = () => {
@@ -35,7 +40,7 @@ const RemittanceCard = ({
   };
 
   return (
-    <div className="RemittanceCard">
+    <div className="RemittanceCard" onClick={onClick}>
       <button type="button" className="RemittanceCard__content">
         <div className="RemittanceCard__top">
           <div>
@@ -49,7 +54,10 @@ const RemittanceCard = ({
           {`${getNumberWithCommas(amount)}원`}
         </div>
       </button>
-      <ToggleButton isActive={isActive} onChange={onActiveChange} />
+      <ToggleButton
+        isActive={isActive}
+        onChange={(isActive) => onActiveChange && onActiveChange(id, isActive)}
+      />
     </div>
   );
 };

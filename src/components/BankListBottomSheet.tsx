@@ -1,7 +1,7 @@
 import { Bank } from "src/type";
 
 export interface BankListBottomSheetProps {
-  bankList: Bank[];
+  bankList: { [key: number]: string };
   show?: boolean;
   onBankSelect?: (bankId: number) => void;
 }
@@ -16,16 +16,16 @@ const BankListBottomSheet = ({
       <div className="BottomSheet__dim" />
       <div className="BottomSheet__contents">
         <ul className="BankList">
-          {bankList.map(({ name, id }, index) => (
+          {Object.keys(bankList).map((bankId, index) => (
             <li key={index}>
               <button
                 type="button"
                 onClick={() => {
-                  onBankSelect && onBankSelect(id);
+                  onBankSelect && onBankSelect(parseInt(bankId));
                 }}
               >
                 <i />
-                <span>{name}</span>
+                <span>{bankList[parseInt(bankId)]}</span>
               </button>
             </li>
           ))}

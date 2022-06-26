@@ -54,3 +54,7 @@ export interface ReservationDateType {
   type: ReservationType;
   dateAt: string;
 }
+
+export type InputHandle = {
+  getValue: () => string;
+};

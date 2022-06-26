@@ -25,9 +25,9 @@ export const 은행선택 = () => {
   );
 };
 
-export const 은행선택_component = () => {
-  return <BankListBottomSheet bankList={banks} show />;
-};
+// export const 은행선택_component = () => {
+//   return <BankListBottomSheet bankList={banks} show />;
+// };
 
 const banks = [
   {
