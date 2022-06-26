@@ -16,9 +16,11 @@
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "dayjs": "^1.11.3",
+    "msw": "^0.42.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
+    "recoil": "^0.7.4",
     "typescript": "^4.6.4"
   },
   "eslintConfig": {
