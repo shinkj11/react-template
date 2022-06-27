@@ -55,7 +55,6 @@ const FilterBottomSheet = ({
     if (top) {
       const index =
         Math.round((top - FILTER_ITEM_HEIGHT) / FILTER_ITEM_MARGIN) + 1;
-      console.log("우측 필터 인덱스", index);
       setIndexList((org) => ({ ...org, right: index }));
     }
   }, []);

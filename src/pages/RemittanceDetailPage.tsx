@@ -41,10 +41,15 @@ const RemittanceDetailPage = () => {
 
   const onDeleteButtonClick = () => {
     if (window.confirm("삭제하시겠습니까?")) {
-      bankService.removeReservationDetail(reservationId).then((value) => {
-        setReservationId(0);
-        setPage("list");
-      });
+      bankService
+        .removeReservationDetail(reservationId)
+        .then((value) => {
+          setReservationId(0);
+          setPage("list");
+        })
+        .catch((error) => {
+          alert("서버에러가 발생했습니다.");
+        });
     }
   };
 

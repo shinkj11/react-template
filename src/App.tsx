@@ -10,45 +10,23 @@ import RemittanceListPage from "./pages/RemittanceListPage";
 import "../src/assets/style/base.scss";
 import RemittanceRegistrationPage from "./pages/RemittanceRegistrationPage";
 import RemittanceDetailPage from "./pages/RemittanceDetailPage";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   const page = useRecoilValue(pageState);
-  const callApi = async () => {
-    // const result = await bankService.addReservationDetail({
-    //   title: "title",
-    //   bankId: 2,
-    //   accountNumber: "accountNumber",
-    //   type: "MONTHLY",
-    //   dateAt: "dateAt",
-    //   startAt: "startAt",
-    //   finishAt: "finishAt",
-    //   amount: 10000,
-    //   isActive: true,
-    // });
-    const result = await bankService.modifyReservationDetail({
-      id: 3,
-      title: "title",
-      bankId: 2,
-      accountNumber: "accountNumber",
-      type: "MONTHLY",
-      dateAt: "dateAt",
-      startAt: "startAt",
-      finishAt: "finishAt",
-      amount: 10000,
-      isActive: false,
-    });
-  };
 
   return (
-    <Suspense fallback={<></>}>
-      {page === "list" ? (
-        <RemittanceListPage />
-      ) : page === "registration" ? (
-        <RemittanceRegistrationPage />
-      ) : page === "detail" ? (
-        <RemittanceDetailPage />
-      ) : undefined}
-    </Suspense>
+    <ErrorBoundary fallback={<div role="alert">서버 에러입니다.</div>}>
+      <Suspense fallback={<></>}>
+        {page === "list" ? (
+          <RemittanceListPage />
+        ) : page === "registration" ? (
+          <RemittanceRegistrationPage />
+        ) : page === "detail" ? (
+          <RemittanceDetailPage />
+        ) : undefined}
+      </Suspense>
+    </ErrorBoundary>
   );
 }
 

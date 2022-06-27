@@ -33,14 +33,18 @@ const RemittanceListPage = () => {
     callModifyReservationDetail({
       ...reservationList[changedIndex]!,
       isActive: isActive,
-    }).then((result) => {
-      setReservationList((org) =>
-        org.map((item, idx) => {
-          if (idx === changedIndex) return result;
-          else return item;
-        })
-      );
-    });
+    })
+      .then((result) => {
+        setReservationList((org) =>
+          org.map((item, idx) => {
+            if (idx === changedIndex) return result;
+            else return item;
+          })
+        );
+      })
+      .catch((error) => {
+        alert("서버에러가 발생했습니다.");
+      });
   }, []);
 
   const onItemClick = (reservationId: number) => {
@@ -77,7 +81,7 @@ const RemittanceListPage = () => {
                   key={index}
                   {...item}
                   id={item.id!}
-                  bankName={banks[item.bankId]}
+                  bankName={banks[item.bankId] ?? ""}
                   onActiveChange={onActiveChange}
                   onClick={() => onItemClick(item.id!)}
                 />
