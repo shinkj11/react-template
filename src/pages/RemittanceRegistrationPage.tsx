@@ -84,7 +84,9 @@ const RemittanceRegistrationPage = () => {
         amount: Number(amountString.replaceAll(",", "")),
         isActive: true,
       };
-      callAddReservation(reservation).then(() => setPage("list"));
+      callAddReservation(reservation)
+        .then(() => setPage("list"))
+        .catch((error) => alert("서버에러가 발생했습니다."));
     }
   };
 
