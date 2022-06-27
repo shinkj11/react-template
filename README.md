@@ -47,3 +47,8 @@ React.Suspense와 recoil을 활용하여 fetch 이후 화면이 렌더링되도�
 API 호출 로직을 Service 레이어로 분리하고,
 Typescript Generic을 사용하여 데이터의 타입정합성을 지키고자 하였고
 Axios 라이브러리의 wrapper 및 interceptor 패턴을 통해 효율적인 API 처리를 하고자했습니다.
+
+#####4. API 에러 처리
+Recoil을 통해 Fetch Before Rendering으로 호출되는 API는 Error Boundary를 통해 Fallback 처리하였고
+삭제 수정 추가 등의 API는 Promise catch 구문으로 처리했습니다.
+요구사항에 에러처리 관련 내용이 없어 간단하게 문구 노출 및 alert으로 구현했습니다.
